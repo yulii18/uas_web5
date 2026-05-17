@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void {
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
+            $table->foreignId('kategori_id')
+                ->constrained('kategoris')  // ← pastikan 'kategoris' bukan 'kategori'
+                ->onDelete('cascade');
             $table->string('judul');
             $table->string('penulis');
             $table->string('penerbit');
             $table->year('tahun_terbit');
-            $table->string('isbn');
+            $table->string('isbn')->unique();
             $table->integer('stok')->default(0);
             $table->text('deskripsi')->nullable();
             $table->string('cover')->nullable();
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bukus');
+        Schema::dropIfExists('buku');
     }
 };
