@@ -1,11 +1,38 @@
-@import 'tailwindcss';
+:root {
+    --primary-dark: #00537A;
+    --primary-darker: #013C58;
+    --secondary-light: #A8E8F9;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+.bg-primary { background-color: var(--primary-dark) !important; }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.btn-primary {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker);
+}
+
+.btn-warning {
+    background-color: #F5A201;
+    border-color: #F5A201;
+    color: white;
+}
+
+.table th {
+    background-color: var(--secondary-light);
+    color: var(--primary-darker);
+}
+
+.card-header {
+    background-color: var(--primary-dark) !important;
+    color: white !important;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--secondary-light);
+    border-radius: 5px;
 }

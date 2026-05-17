@@ -1,3 +1,28 @@
-<div>
-    <!-- Breathing in, I calm body and mind. Breathing out, I smile. - Thich Nhat Hanh -->
+@extends('components.auth-layout')
+
+@section('title', 'Login')
+
+@section('content')
+<div class="card shadow">
+    <div class="card-header bg-primary text-white text-center">
+        <h4 class="mb-0">Login</h4>
+    </div>
+    <div class="card-body">
+        <form action="{{ url('/login') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <small>Belum punya akun? <a href="{{ url('/register') }}">Register</a></small>
+        </div>
+    </div>
 </div>
+@endsection

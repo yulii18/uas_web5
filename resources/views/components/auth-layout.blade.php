@@ -1,26 +1,20 @@
-@props(['title' => 'Login'])
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>{{ $title }} — Perpustakaan</title>
+    <title>@yield('title', 'Login/Register')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="auth-body">
-    <div class="auth-wrapper">
-        <div class="auth-card">
-            <div class="auth-logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="10" fill="#013C58"/>
-                    <path d="M10 12h12v2H10zm0 5h20v2H10zm0 5h16v2H10z" fill="#FFBA42"/>
-                </svg>
-                <span>Perpustakaan Digital</span>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center min-vh-100 align-items-center">
+            <div class="col-md-6 col-lg-5">
+                @yield('content')
             </div>
-            {{ $slot }}
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
