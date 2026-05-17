@@ -11,7 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+
+        // ↓ TAMBAHKAN INI — redirect ke /login kalau belum login
+        $middleware->redirectGuestsTo('/login');
+
+        // ↓ TAMBAHKAN INI — alias untuk RoleMiddleware
+        $middleware->alias([
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

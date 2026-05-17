@@ -1,0 +1,29 @@
+/* Custom style perpustakaan — pakai Bootstrap sebagai base */
+
+/* Navbar palette */
+.navbar-perpus {
+    background: #013C58 !important;
+}
+.navbar-perpus .navbar-brand,
+.navbar-perpus .nav-link {
+    color: #A8E8F9 !important;
+}
+.navbar-perpus .nav-link:hover {
+    color: #FFBA42 !important;
+}
+
+/* Sidebar active */
+.sidebar-link.active {
+    background: #EFF9FE;
+    color: #013C58 !important;
+    border-left: 3px solid #F5A201;
+    font-weight: 700;
+}
+
+/* Badge role */
+.badge-admin   { background: #013C58; color: #A8E8F9; }
+.badge-petugas { background: #F5A201; color: #013C58; }
+
+/* Card header palette */
+.card-header-navy { background: #013C58; color: #A8E8F9; }
+.card-header-amber { background: #F5A201; color: #013C58; }

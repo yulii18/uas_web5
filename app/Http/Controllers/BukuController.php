@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BukuController extends Controller {
 
@@ -21,11 +22,15 @@ class BukuController extends Controller {
     }
 
     public function create() {
+        Gate::authorize('store-buku');
+
         $kategoris = Kategori::all();
         return view('buku.create', compact('kategoris'));
     }
 
     public function store(Request $request) {
+        Gate::authorize('store-buku');
+
         $validated = $request->validate([
             'judul'        => 'required|string|max:255',
             'penulis'      => 'required|string|max:255',
@@ -45,16 +50,22 @@ class BukuController extends Controller {
     }
 
     public function show(Buku $buku) {
+        Gate::authorize('store-buku');
+
         $buku->load('kategori','peminjamans.anggota');
         return view('buku.show', compact('buku'));
     }
 
     public function edit(Buku $buku) {
+        Gate::authorize('store-buku');
+
         $kategoris = Kategori::all();
         return view('buku.edit', compact('buku','kategoris'));
     }
 
     public function update(Request $request, Buku $buku) {
+        Gate::authorize('store-buku');
+
         $validated = $request->validate([
             'judul'        => 'required|string|max:255',
             'penulis'      => 'required|string|max:255',
@@ -74,6 +85,8 @@ class BukuController extends Controller {
     }
 
     public function destroy(Buku $buku) {
+        Gate::authorize('store-buku');
+
         $buku->delete();
         return redirect()->route('buku.index')->with('success','Buku berhasil dihapus!');
     }

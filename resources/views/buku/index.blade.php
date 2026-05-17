@@ -1,14 +1,17 @@
 @extends('components.default-layout')
-
 @section('title', 'Data Buku')
 
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Data Buku</h1>
-        <a href="{{ url('/buku/create') }}" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i> Tambah Buku
+        <h4 class="fw-bold">Data Buku</h4>
+
+        {{-- Tombol tambah hanya muncul untuk admin --}}
+        @can('store-buku')
+        <a href="{{ route('buku.create') }}" class="btn btn-primary">
+            + Tambah Buku
         </a>
+        @endcan
     </div>
 
     <div class="card shadow">
@@ -17,7 +20,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Judul Buku</th>
+                        <th>Judul</th>
                         <th>Penulis</th>
                         <th>Penerbit</th>
                         <th>Tahun</th>
@@ -35,19 +38,32 @@
                         <td>{{ $item->tahun_terbit }}</td>
                         <td>{{ $item->stok }}</td>
                         <td>
-                            <a href="{{ url('/buku/'.$item->id_buku) }}" class="btn btn-sm btn-info">
+                            {{-- Detail boleh semua --}}
+                            <a href="{{ route('buku.show', $item) }}"
+                               class="btn btn-sm btn-info">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ url('/buku/'.$item->id_buku.'/edit') }}" class="btn btn-sm btn-warning">
+
+                            {{-- Edit hanya admin --}}
+                            @can('edit-buku')
+                            <a href="{{ route('buku.edit', $item) }}"
+                               class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ url('/buku/'.$item->id_buku) }}" method="POST" class="d-inline">
+                            @endcan
+
+                            {{-- Hapus hanya admin --}}
+                            @can('destroy-buku')
+                            <form action="{{ route('buku.destroy', $item) }}"
+                                  method="POST" class="d-inline"
+                                  onsubmit="return confirm('Yakin hapus?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus?')">
+                                <button type="submit" class="btn btn-sm btn-danger">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
+                            @endcan
                         </td>
                     </tr>
                     @empty
